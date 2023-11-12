@@ -1,4 +1,4 @@
-<h1 align = "center"> 🌟T-Display-S3🌟</h1>
+<h1 align = "center"> 🌟T-Display-S3 with MQTT🌟</h1>
 
 [![PlatformIO CI](https://github.com/Xinyuan-LilyGO/T-Display-S3/actions/workflows/platformio.yml/badge.svg)](https://github.com/Xinyuan-LilyGO/T-Display-S3/actions/workflows/platformio.yml)
 
