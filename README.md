@@ -1,8 +1,8 @@
-<h1 align = "center"> 🌟T-Display-S3 with MQTT🌟</h1>
+<h1 align = "center"> v2 🌟T-Display-S3 with MQTT🌟</h1>
 
 [![PlatformIO CI](https://github.com/Xinyuan-LilyGO/T-Display-S3/actions/workflows/platformio.yml/badge.svg)](https://github.com/Xinyuan-LilyGO/T-Display-S3/actions/workflows/platformio.yml)
 
-## v2 MQTT on T-Display S3 - HiveMQ and TkkrLab
+## MQTT on T-Display S3 - HiveMQ and TkkrLab
 
 This is a project targeted at educating the ‘maker community’ on how to use the MQTT protocol for bidirectional communication with the ESP32 to publish messages and subscribe to topics. The code and underlying setup also can also be used as a boilerplate for more professional solutions since it is robust and compatible with a range of hardware systems.
 
