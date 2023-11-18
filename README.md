@@ -13,14 +13,27 @@ https://www.hivemq.com/article/iot-tutorial-bidirectional-mqtt-communication-esp
 
 T-Display-S3 is a ESP32-S3 development board. It is equipped with a color 1.9" LCD screen and two programmable buttons. Communication using I8080 interface. Retains the same layout design as T-Display. You can directly use ESP32S3 for USB communication or programming.
 
+## MQTT
+
+MQTT is a lightweight, publish-subscribe, machine to machine network protocol for message queue/message queuing service. It is designed for connections with remote locations that have devices with resource constraints or limited network bandwidth, such as in the Internet of Things.
+
+<img align="center" src="./image/pubsub.gif"/>
+
+
+## Usefull links
+
+* https://code.visualstudio.com/download
+* https://github.com/hivemq/mqtt-cli/releases/download/v4.22.0/mqtt-cli-4.22.0-win.zip
+* https://hivemq.github.io/mqtt-cli/
+* https://mqttx.app/downloads
+
+
 ## T-Display-S3 Pinout
 
 ![](image/T-DISPLAY-S3.jpg)
 
-## T-Display-S3 TOUCH Pinout
-
-![](image/T-DISPLAY-S3-TOUCH.png)
-
+to reset to factory empty:
+ ``` python -m esptool --chip esp32-s3 erase_flash ```
 
 ## Where to buy
 
@@ -67,13 +80,6 @@ T-Display-S3 is available from: [LILYGO](https://www.lilygo.cc/products/t-displa
 9. Click (plug symbol) to monitor serial output
 
 
-
-### ESP-IDF
-
-The installation method varies depending on the system, refer to the [official manual](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html) for installation.
-
-- Using IDF version 4.4
-
 ### Micropython
 
 - [russhughes/st7789s3_mpy](https://github.com/russhughes/st7789s3_mpy)
@@ -87,14 +93,3 @@ The installation method varies depending on the system, refer to the [official m
    2. Delete the <TFT_eSPI> in the libraries, and replace the <TFT_eSPI> in the <lib> folder of the main page to the libraries directory
    3. When opening the Arduino IDE, it prompts whether to upgrade the library, please choose not to upgrade, otherwise it will overwrite the configuration of the <TFT_eSPI> display
 
-2. The board uses USB as the JTAG upload port. When printing serial port information on USB_CDC_ON_BOOT configuration needs to be turned on. 
-If the port cannot be found when uploading the program or the USB has been used for other functions, the port does not appear. 
-Please enter the upload mode manually. 
-   1. Connect the board via the USB cable
-   2. Press and hold the BOOT button , While still pressing the BOOT button, press RST
-   3. Release the RST
-   4. Release the BOOT button
-   5. Upload sketch
-
-3. If the above is invalid, burn the [binary file](./firmware/README.MD)  to check whether the hardware is normal
-   - [Video](https://youtu.be/L-W3dCMtEdo)

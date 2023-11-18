@@ -12,6 +12,8 @@ struct Texts {
         *error_module,
         *error_timeout,
         *error_wifi,
+        *OK_wifi, 
+        *connect_to_wifi,
         *error_format,
         *config_wifi,
         // *config_ota,
@@ -24,6 +26,7 @@ struct Texts {
         *config_mqtt_interval,
         *config_mqtt_template,
         *config_template_info,
+        *storage_init,
         *connecting,
         *wait
     ;
@@ -57,6 +60,8 @@ bool select(Texts& T, String language) {
         T.error_module = "module turned around!";
         T.error_timeout = "Time's up";
         T.error_wifi = "WiFi failed!";
+        T.OK_wifi ="Wifi Connected";
+        T.connect_to_wifi= "Conn. to Wifi";
         T.error_format = "Formatting failed";
         T.wait = "wait...";
         T.config_wifi = "Use WiFi connection";
@@ -71,6 +76,7 @@ bool select(Texts& T, String language) {
         T.config_mqtt_template = "Payload template";
         T.config_template_info = "The {} in the template is replaced by the hostname.";
         T.connecting = "Connecting to WiFi...";
+        T.storage_init = "Initialising storage.";
         T.portal_instructions = {
             {
                 "For configuration,",
@@ -126,6 +132,8 @@ bool select(Texts& T, String language) {
         T.error_module = "module verkeerd om!";
         T.error_timeout = "Tijd verstreken";
         T.error_wifi = "WiFi mislukt!";
+        T.OK_wifi ="Wifi Verbonden";
+        T.connect_to_wifi= "Conn. mey Wifi";
         T.error_format = "Formatteren mislukt";
         T.wait = "wacht...";
         T.config_wifi = "WiFi-verbinding gebruiken";

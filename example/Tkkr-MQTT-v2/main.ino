@@ -9,9 +9,6 @@
 
     Note: this example is written for ESP32.
     For ESP8266, use LittleFS.begin() instead of SPIFFS.begin(true).
-
-
-    https://github.com/Juerd/snuffelding/blob/main/snuffelding.ino
 */
 
 #include <SPIFFS.h>
@@ -109,7 +106,7 @@ void Setup_wifi_connection(void)
 
     // Define custom settings saved by WifiSettings portal
     // These will return the default if nothing was set before
-    WiFiSettings.hostname = "HiveMQ-";
+    WiFiSettings.hostname = "TkkrLab-";
     WiFiSettings.language = LANGUAGE;
     WiFiSettings.heading("MQTT");
     MQTTLanguage::select(T, WiFiSettings.language);
@@ -122,8 +119,8 @@ void Setup_wifi_connection(void)
     mqtt_broker = WiFiSettings.string("mqtt_broker", 64, "broker.hivemq.com", T.config_mqtt_server);
     mqtt_port      = WiFiSettings.integer("mqtt_port", 0, 65535, 1883, T.config_mqtt_port);
     max_failures  = WiFiSettings.integer("HiveMQ_max_failures", 0, 1000, 10, T.config_max_failures);
-    mqtt_Pubtopic = WiFiSettings.string("HiveMQ_mqtt_topic", "HiveMQ/"+WiFiSettings.hostname, T.config_mqtt_topic);
-    mqtt_Subtopic  = WiFiSettings.string("HiveMQ_Submqtt_topic", "HiveMQ/SubTopic", T.config_Submqtt_topic); 
+    mqtt_Pubtopic = WiFiSettings.string("HiveMQ_mqtt_topic", "TkkrLab/"+WiFiSettings.hostname, T.config_mqtt_topic);
+    mqtt_Subtopic  = WiFiSettings.string("HiveMQ_Submqtt_topic", "TkkrLab/SubTopic", T.config_Submqtt_topic); 
     mqtt_interval = 1000UL * WiFiSettings.integer("HiveMQ_mqtt_interval", 10, 3600, 30, T.config_mqtt_interval);
     mqtt_template = WiFiSettings.string("HiveMQ_mqtt_template", "Payload : {}", T.config_mqtt_template);
     WiFiSettings.info(T.config_template_info);
@@ -137,19 +134,28 @@ void Setup_wifi_connection(void)
         digitalWrite(PIN_LCD_BL, LED_ON); // Turn LED off
         display_big(T.error_wifi, TFT_RED);
         delay(2000);
+        Serial.println("WifiSettings.OnFailure, Display instruction on LCD screen and ... ");
+        display_lines(T.portal_instructions[0], TFT_WHITE, TFT_BLUE);
+        Serial.println(" w... (re)launch Wifi config portal  - ");
         WiFiSettings.portal();
-        Serial.println("wifi settings Failure, Wifi config portal (re)started - ");
     };
+    
     WiFiSettings.onWaitLoop = []() {
         digitalWrite(PIN_LCD_BL, !digitalRead(PIN_LCD_BL)); // Toggle LED
+        display_big(T.connect_to_wifi, TFT_WHITE);
         return 500; // Delay next function call by 500ms
     };
 
     Serial.println("Attempting to connect with these parameters : ");
     Report_Global_Settings();
+    Serial.println("Initial Wifi : Display instruction on LCD screen and ... ");
+    display_lines(T.portal_instructions[0], TFT_WHITE, TFT_BLUE);
+    Serial.println(" ... (re)launch Wifi config portal  - ");
     // Connect to WiFi with a timeout of 30 seconds
     // Launches the portal if the connection failed
     WiFiSettings.connect(true, 30);
+    display_big(T.OK_wifi, TFT_RED);
+    Serial.println("Initial Wifi : Wifi conencted OK ");
 }
 
 
@@ -167,15 +173,22 @@ bool button(int pin) {
 void setup() {
     Serial.begin(115200);
     delay(2000);
+    
     Serial.println("\n\n************");
     Serial.println("In setup ..");
     Serial.println("************");
-    SPIFFS.begin(true);  // Will format on the first run after failing to mount
+    
     pinMode(PIN_LCD_BL, OUTPUT);
     pinMode(PIN_BUTTON_1, INPUT);
     pinMode(PIN_BUTTON_2, INPUT);
-
+    
     display_init();
+    
+    Serial.println("SPIFFS start ..");
+    display_big("FS Init", TFT_RED);
+    SPIFFS.begin(true);  // Will format on the first run after failing to mount
+    Serial.println("SPIFFS finished ..");
+    
     Serial.println("Init done, now logo");
     display_logo();
     delay(5000);
