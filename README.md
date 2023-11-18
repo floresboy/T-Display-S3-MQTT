@@ -8,6 +8,7 @@ This is a project targeted at educating the ‘maker community’ on how to use 
 
 https://www.hivemq.com/article/iot-tutorial-bidirectional-mqtt-communication-esp32/
 
+Read more [here](./Tkkrlabv1.pdf) in the presentation
 
 ## Description
 
