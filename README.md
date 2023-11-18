@@ -19,6 +19,11 @@ MQTT is a lightweight, publish-subscribe, machine to machine network protocol fo
 
 <img align="center" src="./image/pubsub.gif"/>
 
+## Voorbeeld MQTT commando's
+```
+mqtt pub -h broker.hivemq.com -t TkkrLab/SubTopic -m "zaterdag1"                                       
+mqtt sub -h broker.hivemq.com -t TkkrLab/#        
+```
 
 ## Usefull links
 

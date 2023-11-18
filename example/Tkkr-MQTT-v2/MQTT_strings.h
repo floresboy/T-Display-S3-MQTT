@@ -61,7 +61,7 @@ bool select(Texts& T, String language) {
         T.error_timeout = "Time's up";
         T.error_wifi = "WiFi failed!";
         T.OK_wifi ="Wifi Connected";
-        T.connect_to_wifi= "Conn. to Wifi";
+        T.connect_to_wifi= "Conecting to Wifi";
         T.error_format = "Formatting failed";
         T.wait = "wait...";
         T.config_wifi = "Use WiFi connection";
@@ -133,7 +133,7 @@ bool select(Texts& T, String language) {
         T.error_timeout = "Tijd verstreken";
         T.error_wifi = "WiFi mislukt!";
         T.OK_wifi ="Wifi Verbonden";
-        T.connect_to_wifi= "Conn. mey Wifi";
+        T.connect_to_wifi= "Connectie maken met Wifi";
         T.error_format = "Formatteren mislukt";
         T.wait = "wacht...";
         T.config_wifi = "WiFi-verbinding gebruiken";

@@ -120,7 +120,7 @@ void Setup_wifi_connection(void)
     mqtt_port      = WiFiSettings.integer("mqtt_port", 0, 65535, 1883, T.config_mqtt_port);
     max_failures  = WiFiSettings.integer("HiveMQ_max_failures", 0, 1000, 10, T.config_max_failures);
     mqtt_Pubtopic = WiFiSettings.string("HiveMQ_mqtt_topic", "TkkrLab/"+WiFiSettings.hostname, T.config_mqtt_topic);
-    mqtt_Subtopic  = WiFiSettings.string("HiveMQ_Submqtt_topic", "TkkrLab/SubTopic", T.config_Submqtt_topic); 
+    mqtt_Subtopic  = WiFiSettings.string("HiveMQ_Submqtt_topic", "TkkrLab/SubTopic/#", T.config_Submqtt_topic); 
     mqtt_interval = 1000UL * WiFiSettings.integer("HiveMQ_mqtt_interval", 10, 3600, 30, T.config_mqtt_interval);
     mqtt_template = WiFiSettings.string("HiveMQ_mqtt_template", "Payload : {}", T.config_mqtt_template);
     WiFiSettings.info(T.config_template_info);
@@ -131,7 +131,7 @@ void Setup_wifi_connection(void)
     };
 
     WiFiSettings.onFailure  = []() {
-        digitalWrite(PIN_LCD_BL, LED_ON); // Turn LED off
+        digitalWrite(PIN_LCD_BL, LED_ON); // Turn LED on
         display_big(T.error_wifi, TFT_RED);
         delay(2000);
         Serial.println("WifiSettings.OnFailure, Display instruction on LCD screen and ... ");
@@ -206,6 +206,7 @@ void setup() {
 
     MQTTretain(mqtt_Pubtopic, "Initial message from "+WiFiSettings.hostname); 
     
+    digitalWrite(PIN_LCD_BL, LED_ON); // Turn LED on
     display_big("Ready !", TFT_RED);
     delay(1000);
     display_config(mqtt_broker,mqtt_Pubtopic,mqtt_Subtopic);
