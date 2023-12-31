@@ -147,13 +147,17 @@ void Setup_wifi_connection(void)
     };
 
     Serial.println("Attempting to connect with these parameters : ");
+    digitalWrite(PIN_LCD_BL, LED_ON); // Turn LED on
     Report_Global_Settings();
     Serial.println("Initial Wifi : Display instruction on LCD screen and ... ");
     display_lines(T.portal_instructions[0], TFT_WHITE, TFT_BLUE);
+    pinMode(PIN_LCD_BL, OUTPUT);
+    digitalWrite(PIN_LCD_BL, LED_ON); // Turn LED on
     Serial.println(" ... (re)launch Wifi config portal  - ");
     // Connect to WiFi with a timeout of 30 seconds
     // Launches the portal if the connection failed
     WiFiSettings.connect(true, 30);
+    digitalWrite(PIN_LCD_BL, LED_ON); // Turn LED on
     display_big(T.OK_wifi, TFT_RED);
     Serial.println("Initial Wifi : Wifi conencted OK ");
 }
